@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Sound_manager.cs" />
+    <Compile Include="Assets\Scripts\Play_Script.cs" />
     <Compile Include="Assets\Scripts\Player_Move.cs" />
     <Compile Include="Assets\Scripts\Player_fuel.cs" />
     <Compile Include="Assets\Scripts\Player_Coin.cs" />
