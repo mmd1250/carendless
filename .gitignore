@@ -40,4 +40,7 @@ AddressableAssetsData/*/*.hash
 .collab/
 
 
-MyGit
+MyGit/
+Extras/
+ProjectSettings/Packages/com.unity.probuilder/
+
