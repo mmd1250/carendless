@@ -9,7 +9,8 @@ public class Sound_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        isMute = PlayerPrefs.GetInt("isMute", 0) == 1;
+        ApplySoundSettings();
     }
 
     // Update is called once per frame
@@ -22,15 +23,15 @@ public class Sound_manager : MonoBehaviour
     
     public void Toggle_Music()
     {
-        if (isMute == true)
-        {
-            AudioSource.volume = 1f;
-            isMute = false;
-        }
-        else
-        {
-            AudioSource.volume = 0f;
-            isMute = true;
-        }
+        isMute = !isMute; // ????? ????? ???/??? ???
+        ApplySoundSettings();
+
+        // ????? ????? ?? PlayerPrefs
+        PlayerPrefs.SetInt("isMute", isMute ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    void ApplySoundSettings()
+    {
+        AudioSource.volume = isMute ? 0f : 1f;
     }
 }

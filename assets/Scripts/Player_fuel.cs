@@ -8,9 +8,13 @@ public class NewBehaviourScript : MonoBehaviour
     public Player_Move player_Move; [SerializeField]
     public Slider Fuel_Slider;
     public MonoBehaviour Player_Movement;
-    public float DecreaseRate = 5f;
-    public float MinValue;
+    public float DecreaseRate = 3f;
+    public float MinValue = 0;
     public float Fuel_Decrease_Time = 0f;
+    public GameObject GameLoseCanvas;
+    public GameObject PuaseBtn;
+    public ParticleSystem particleSystem;
+    public AudioSource AudioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +34,27 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 Fuel_Slider.value -= DecreaseRate * Time.deltaTime;
             }
+            else if (Fuel_Slider.value <= MinValue)
+            {
+                player_Move.is_moving = false;
+                Time.timeScale = 0;
+                GameLoseCanvas.SetActive(true);
+                PuaseBtn.SetActive(false);
+            }
             
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "fuel")
+        {
+            Fuel_Slider.value += 15;
+            Destroy(other.gameObject);
+            if (particleSystem != null)
+            {
+                particleSystem.Play(); // اجرای پارتیکل
+                AudioSource.Play();
+            }
         }
     }
 }
